@@ -1,15 +1,16 @@
 import React from 'react';
 import CurrencyExchange from '../../components/CurrencyExchange/CurrencyExchange';
-import { CurrencyState, CurrencyType } from '../../redux/currencyReducer';
+import {CurrencyType, selectAll} from '../../redux/currencyReducer';
 import { Dispatch } from 'redux';
 import {
     ChangeActionAC,
     ChangeCurrencyFieldAC,
     CurrencyReducersTypes, ChangeCurrentCurrencyAC
 } from '../../redux/actions';
-import {connect, ConnectedProps, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const CurrencyEContainer: React.FC<TProps> = props => {
+//const CurrencyEContainer: React.FC<TProps> = props => {
+const CurrencyEContainer: React.FC = () => {
 
     /*const {
         currencies,
@@ -33,13 +34,21 @@ const CurrencyEContainer: React.FC<TProps> = props => {
         ChangeCurrentCurrencyAC,
     } = props;*/
 
+   /* const {
+        currencies,
+        currentCurrency,
+        isBuying,
+        amountOfBYN,
+        amountOfCurrency,
+    } = props;*/
+
     const {
         currencies,
         currentCurrency,
         isBuying,
         amountOfBYN,
         amountOfCurrency,
-    } = props;
+    } = useSelector(selectAll);
 
     const dispatch = useDispatch<Dispatch<CurrencyReducersTypes>>()
 
@@ -107,7 +116,7 @@ const CurrencyEContainer: React.FC<TProps> = props => {
     );
 };
 
-const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencyState => {
+/*const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencyState => {
     return {
         currencies: currency.currencies,
         currentCurrency: currency.currentCurrency,
@@ -115,7 +124,7 @@ const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencySt
         amountOfBYN: currency.amountOfBYN,
         amountOfCurrency: currency.amountOfCurrency,
     };
-};
+};*/
 
 
 /*const mapDispatchToProps = (dispatch: Dispatch<CurrencyReducersTypes>) : any => {
@@ -140,9 +149,10 @@ const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencySt
     ChangeCurrentCurrencyAC,
 });*/
 
-const connector = connect(mapStateToProps, {});
+/*const connector = connect(mapStateToProps, {});
 
 type TProps = ConnectedProps<typeof connector>;
 
-export default connector(CurrencyEContainer);
+export default connector(CurrencyEContainer);*/
+export default CurrencyEContainer;
 

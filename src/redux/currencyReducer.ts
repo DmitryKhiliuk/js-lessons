@@ -1,4 +1,5 @@
 import {ACTIONS_TYPE, CurrencyReducersTypes} from './actions';
+import {IGlobalState} from "./state";
 
 
 export type CurrencyType = {
@@ -52,3 +53,6 @@ export const currencyReducer = (state: CurrencyState = initialState, action: Cur
             return state;
     }
 };
+
+//export const selectCurrencies = (store: IGlobalState) => store.currency.currencies;
+export const selectAll = (store: IGlobalState) => store.currency;
